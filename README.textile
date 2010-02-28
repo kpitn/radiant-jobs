@@ -1,0 +1,27 @@
+h1. Todo :
+
+h2. Model :
+
+Job :
+* published_at
+* reference
+* title
+* deleted_at
+* description
+* profile
+* location
+* job_category_id
+
+JobCategory:
+* name
+
+JobApply:
+* firstname
+* lastname
+* email
+* motivation
+* attachment
+* job_id
+
+Country:
+
