@@ -1,0 +1,26 @@
+<div class="outset">
+  <table id="job_categories" class="index">
+    <thead>
+      <tr>
+        <th><%= "Job Category" %></th>
+        <th><%= "Modify" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @job_categories.each do |job_category| %>
+        <tr>
+          <td><%= link_to job_category.name, edit_admin_job_category_path(job_category) %></td>
+          <td><%= link_to image('remove', :alt => 'Remove Job Category'), admin_job_category_path(job_category), :method => :delete, :confirm => "Voulez-vous vriment supprimer cette catégorie  ?" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+</div>
+
+
+<div id="actions">
+  <ul>
+    <li><%= link_to "New Job Category", new_admin_job_category_path %></li>
+  </ul>
+</div>

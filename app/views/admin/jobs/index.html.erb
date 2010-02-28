@@ -1,6 +1,26 @@
-<%#
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
-%>
+<div class="outset">
+  <table id="jobs" class="index">
+    <thead>
+      <tr>
+        <th><%= "Job"%></th>
+        <th><%= "Modify" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @jobs.each do |job| %>
+        <tr>
+          <td><%= link_to job.title, edit_admin_job_path(job) %></td>
+          <td><%= link_to image('remove', :alt => 'Remove Job'), admin_job_path(job), :method => :delete, :confirm => "Voulez-vous vriment supprimer ce job ?" %></td>
+        </tr>
+      <% end %>
+    </tbody>
 
-<%= "index.html" %>
+  </table>
+</div>
+
+
+<div id="actions">
+  <ul>
+    <li><%= link_to "New Job", new_admin_job_path %></li>
+  </ul>
+</div>
