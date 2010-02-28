@@ -1,0 +1,26 @@
+body.reversed #content form li{list-style:none;}
+
+body.reversed #content form li label {
+    font-weight:bold;
+    text-shadow:1px 1px 0 #666666;
+}
+
+#content form li label {
+    display:block;
+}
+
+#content form li input[type=text] {
+    font-family:Georgia,Palatino,"Times New Roman",Times,serif;
+    font-size:200%;
+    margin-top:4px;
+    width:99.5%;
+}
+
+body.reversed #content textarea {
+    border:1px solid white;
+}
+
+content form li textarea {
+    font-size:100%;
+    margin-top:0.3em;
+}
