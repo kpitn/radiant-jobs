@@ -13,14 +13,13 @@ class JobsExtension < Radiant::Extension
   end
 
   def activate
-#    admin.tabs.add "Carrers", "/admin/foo", :after => "Content", :visibility => [:all]
+    Page.send(:include, JobTags)
 
-#    nav.add_item("test")
     tab 'Carrers' do
      add_item("Jobs", "/admin/jobs")
      add_item("Job Categories", "/admin/job_categories")
      add_item("Job Applies", "/admin/job_applies")
    end
-  end 
+  end
 end
 
