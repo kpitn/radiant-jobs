@@ -33,14 +33,13 @@ module JobTags
     tag.expand unless tag.locals.job.nil?
   end
 
-
   desc %{
     Usage:
-    <pre><code><r:job:title /></code></pre>
-    Provides title for current job }
-  tag "job:title" do |tag|
+    <pre><code><r:job:id /></code></pre>
+    Provides id for current job }
+  tag "job:id" do |tag|
     job = tag.locals.job
-    job.title
+    job.id
   end
 
   desc %{

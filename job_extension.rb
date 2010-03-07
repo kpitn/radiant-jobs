@@ -1,4 +1,5 @@
-class JobsExtension < Radiant::Extension
+
+class JobExtension < Radiant::Extension
   version "0.0.1"
   description "Allows to manage careers"
   url "http://wiki.github.com/kpitn/radiant-jobs/"
@@ -14,7 +15,8 @@ class JobsExtension < Radiant::Extension
 
   def activate
     Page.send(:include, JobTags)
-
+    JobPageIndex
+    JobPageShow
     tab 'Carrers' do
      add_item("Jobs", "/admin/jobs")
      add_item("Job Categories", "/admin/job_categories")
