@@ -12,6 +12,7 @@ class JobExtension < Radiant::Extension
       admin.resources :job_applies
       admin.resources :job_apply_attachments
     end
+    map.connect 'boulots', :controller => 'jobs', :action => 'index'
   end
 
   def activate
@@ -23,6 +24,9 @@ class JobExtension < Radiant::Extension
      add_item("Job Categories", "/admin/job_categories")
      add_item("Job Applies", "/admin/job_applies")
    end
+   
+    #add Radiant Render
+    SiteController.send :include, SiteControllerExtension
   end
 end
 
