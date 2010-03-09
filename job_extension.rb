@@ -7,19 +7,25 @@ class JobExtension < Radiant::Extension
 
   define_routes do |map|
     map.namespace(:admin)  do |admin|
-      admin.resources :jobs
-      admin.resources :job_categories
+      admin.resources :jobs do |job|
+        job.resources :job_applies
+      end
       admin.resources :job_applies
+      admin.resources :job_categories
+      
       admin.resources :job_apply_attachments
     end
-    map.connect 'boulots', :controller => 'jobs', :action => 'index'
+    map.resources 'jobs' do |job|
+      job.resources  'job_applies'
+
+    end
   end
 
   def activate
     Page.send(:include, JobTags)
     JobPageIndex
     JobPageShow
-    tab 'Carrers' do
+    tab 'Careers' do
      add_item("Jobs", "/admin/jobs")
      add_item("Job Categories", "/admin/job_categories")
      add_item("Job Applies", "/admin/job_applies")

@@ -1,6 +1,19 @@
-<%#
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
-%>
+<h2>Rechercher une annonce</h2>
+<% semantic_form_for @search do |f|  %>
+  <% f.inputs do %>
+    <%= f.input :job_category_id_equals, :as => :select, :collection => JobCategory.all.collect{|category| [category.name, category.id]} %>
+  <% end %>
+ <%= f.submit %>
 
-<%= "index.html" %>
+<% end %>
+
+<ul>
+  <% @jobs.each do |job| %>
+    <li>
+        <div class="job_title"><%= job.title %></div>
+        <div class="job_content"><%= truncate(job.description, :length => 100) %></div>
+        <%= link_to "Lire la suite",job_path(job) %>
+        <hr/>
+    </li>
+  <% end %>
+</ul>

@@ -1,0 +1,10 @@
+<h2><%= @job.title %></h2>
+<div>
+  <%= @job.description %>
+</div>
+
+<%= link_to "Postuler", new_job_job_apply_path(@job) %>
+
+<p>
+  <%= link_to  "<< Retour", jobs_path %>
+</p>

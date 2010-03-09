@@ -1,0 +1,13 @@
+<h2>Postuler au job <%=  @job.title %></h2>
+<% semantic_form_for [@job,@job_apply] do |f| %>
+  <% f.inputs do   %>
+    <%= f.input :firstname %>
+    <%= f.input :lastname %>
+    <%= f.input :email %>
+    <%= f.input :motivation %>
+  <% end %>
+  <% f.buttons do %>
+      <%= f.commit_button %>
+  <% end %>
+
+<% end %>

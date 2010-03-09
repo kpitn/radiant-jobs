@@ -1,0 +1,28 @@
+<div class="outset">
+  <table id="jobs" class="index">
+    <thead>
+      <tr>
+        <th><%= "Job"%></th>
+        <th><%= "Nom" %></th>
+        <th><%= "Prénom" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @job_applies.each do |job_apply| %>
+        <tr>
+          <td><%= job_apply.job.title %></td>
+          <td><%= link_to job_apply.lastname, admin_job_job_apply_path(job_apply.job,job_apply) %></td>
+          <td><%= job_apply.firstname %></td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+</div>
+
+
+<div id="actions">
+  <ul>
+    <li><%= link_to "New Job", new_admin_job_path %></li>
+  </ul>
+</div>

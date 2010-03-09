@@ -1,6 +1,7 @@
 class Job < ActiveRecord::Base
 
   belongs_to :job_category
+  has_many :job_applies
 
   validates_presence_of :title, :description, :profile#, :location
   validates_uniqueness_of :reference

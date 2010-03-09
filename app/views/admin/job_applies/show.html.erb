@@ -1,0 +1,8 @@
+<% include_stylesheet 'extensions/jobs/admin/jobs' %>
+
+<div id="main">
+  <div id="content">
+    <h1>Candidature de <%= "#{@job_apply.firstname} #{@job_apply.lastname} pour le job #{@job.title}" %></h1>
+    <%= @job_apply.motivation %>
+  </div>
+</div>
