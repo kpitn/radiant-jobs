@@ -1,3 +1,4 @@
+require_dependency 'application_controller'
 
 class JobExtension < Radiant::Extension
   version "0.0.1"

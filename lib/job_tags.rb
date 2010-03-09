@@ -1,5 +1,5 @@
 module JobTags
-  #tags available globally, not just on GalleryPages
+
   include Radiant::Taggable
 
   class JobTagError < StandardError; end
@@ -16,8 +16,8 @@ module JobTags
     content = ''
     options = {}
 
-    jobs = Job.not_deleted
-    jobs.each do |job|
+   
+   @jobs.each do |job|
       tag.locals.job = job
       content << tag.expand
     end
@@ -89,12 +89,63 @@ module JobTags
 
   desc %{
     Usage:
-    <pre><code><r:job:category /></code></pre>
+    <pre><code><r:job:published_at /></code></pre>
     Provides published_date for current job }
   tag "job:published_at" do |tag|
     job = tag.locals.job
     I18n.l(job.start_published_at,:formats=>:default) if job.start_published_at
   end
+
+  desc %{
+    Usage:
+    <pre><code><r:searchlogic /></code></pre>
+    Provides form for sarchlogic }
+  tag "searchlogic" do |tag|
+    tag.attr['id'] ||= 'search_form'
+    options = []
+    JobCategory.all.each do |category|
+        options << "<option value='#{category.id}'>#{category.name}</option>"
+    end
+    categories =  "<select id='search_job_category_id_equals' name='search[job_category_id_equals]'>#{options}</select>"
+
+
+    results = [] 
+    results << %(<form  method="post" actions='/jobs'>)
+    results <<   categories
+    results <<    "<input type='submit' value='Valider'/>"
+    results << %(</form>)   
+  end
+
+  desc %{
+    Usage:
+    <pre><code><r:searchlogic:category /></code></pre>
+    Provides form for sarchlogic }
+  tag "searchlogic:category" do |tag|
+    options = []
+    JobCategory.all.each do |category|
+        options << "<option value='#{category.id}'>#{category.name}</option>"
+    end
+    return "<select id='search_category_id_equals' name='search_[category_id_equals]'>#{options}</select>"
+
+    
+  end
+
+  desc %{
+    Usage:
+    <pre><code><r:searchlogic:reference /></code></pre>
+    Provides form for sarchlogic }
+  tag "searchlogic:reference" do |tag|
+   "<input type='text' id='search_reference_like' name='search_[reference_like]'/>"
+  end
+
+  desc %{
+    Usage:
+    <pre><code><r:searchlogic:submit /></code></pre>
+    Provides form for sarchlogic }
+  tag "searchlogic:submit" do |tag|
+   "<input type='submit' value='Valider'/>"
+  end
+
 
 
   protected
