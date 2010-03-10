@@ -1,4 +1,9 @@
-<h2>Postuler au job <%=  @job.title %></h2>
+<h1>Postuler</h1>
+<p>
+  <%= link_to "«« Retour aux offres", jobs_path %> -
+  <%= link_to "« Retour à l'offre", jobs_path(@job) %>
+</p>
+<h2>Poste : <%=  @job.title %></h2>
 <% semantic_form_for [@job,@job_apply] do |f| %>
   <% f.inputs do   %>
     <%= f.input :firstname %>
@@ -9,5 +14,8 @@
   <% f.buttons do %>
       <%= f.commit_button %>
   <% end %>
-
 <% end %>
+<p>
+  <%= link_to "«« Retour aux offres", jobs_path %> -
+  <%= link_to "« Retour à l'offre", jobs_path(@job) %>
+</p>

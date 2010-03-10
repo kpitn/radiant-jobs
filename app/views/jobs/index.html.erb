@@ -1,19 +1,24 @@
+<h1>Offre d'emploi</h1>
+
 <h2>Rechercher une annonce</h2>
-<% semantic_form_for @search do |f|  %>
-  <% f.inputs do %>
-    <%= f.input :job_category_id_equals, :as => :select, :collection => JobCategory.all.collect{|category| [category.name, category.id]} %>
-  <% end %>
- <%= f.submit %>
-
+<% form_for @search do |f|  %>
+    Catégorie : <%= f.select :job_category_id_equals, JobCategory.all.collect{|category| [category.name, category.id]} ,:include_blank =>true %>
+    <%= f.submit("Filtrer les annonces") %>
 <% end %>
-
-<ul>
-  <% @jobs.each do |job| %>
-    <li>
-        <div class="job_title"><%= job.title %></div>
-        <div class="job_content"><%= truncate(job.description, :length => 100) %></div>
-        <%= link_to "Lire la suite",job_path(job) %>
-        <hr/>
-    </li>
+<br/>
+<h2>Liste des annonces</h2>
+<table class="jobs">
+  <% @jobs.each_with_index do |job,index| %>
+  <tr>
+    <td>
+        <div class="job_title"><%= link_to(job.title,job_path(job)) %></div>
+        <div class="job_content"><%= truncate(job.description, :length => 250) %></div>
+        <div class="published_at"><%= image_tag("/images/a2z/time.png",:class=>"published_at") %> Publié le <%= l(job.start_published_at,:format=>:short) %></div>
+        <%= link_to "#{image_tag("/images/a2z/link.png",:class=>"published_at")}Lire la suite",job_path(job),:class=>"job_show" %><br/>
+        <%= "<hr/>" if index!=@jobs.size-1 %>
+    </td>
+  </tr>
   <% end %>
-</ul>
+</table>
+
+<%= will_paginate @jobs %>
