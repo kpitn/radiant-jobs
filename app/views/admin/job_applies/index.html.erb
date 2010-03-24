@@ -3,8 +3,9 @@
     <thead>
       <tr>
         <th><%= "Job"%></th>
-        <th><%= "Nom" %></th>
-        <th><%= "Prénom" %></th>
+        <th><%= t('lastname') %></th>
+        <th><%= t('firstname') %></th>
+        <th><%= t('modify') %></th>
       </tr>
     </thead>
     <tbody>
@@ -13,6 +14,7 @@
           <td><%= job_apply.job.title %></td>
           <td><%= link_to job_apply.lastname, admin_job_job_apply_path(job_apply.job,job_apply) %></td>
           <td><%= job_apply.firstname %></td>
+          <td class="remove"><%= link_to t('remove'), admin_job_job_apply_path(job_apply.job,job_apply), :method => :delete, :confirm => "Voulez-vous vriment supprimer cette candidature  ?" %></td>
         </tr>
       <% end %>
     </tbody>

@@ -3,14 +3,14 @@
     <thead>
       <tr>
         <th><%= "Job Category" %></th>
-        <th><%= "Modify" %></th>
+        <th><%= t('modify') %></th>
       </tr>
     </thead>
     <tbody>
       <% @job_categories.each do |job_category| %>
         <tr>
           <td><%= link_to job_category.name, edit_admin_job_category_path(job_category) %></td>
-          <td><%= link_to image('remove', :alt => 'Remove Job Category'), admin_job_category_path(job_category), :method => :delete, :confirm => "Voulez-vous vriment supprimer cette catégorie  ?" %></td>
+          <td class="remove"><%= link_to t('remove'), admin_job_category_path(job_category), :method => :delete, :confirm => "Voulez-vous vriment supprimer cette catégorie  ?" %></td>
         </tr>
       <% end %>
     </tbody>
